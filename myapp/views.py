@@ -40,6 +40,8 @@ class MusicAlbumFilterPrice(generics.ListAPIView):
         print(str(self.request)[61])
         return Music_Albums.objects.filter(musician_id=int(str(self.request)[-3])).order_by("price")
 
+######################## Generic type view  ##########################
+
 # class MusicianList(generics.ListCreateAPIView):
 #     queryset = Musicians.objects.all()
 #     serializer_class = MusiciansSerializer
