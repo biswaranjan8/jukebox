@@ -37,50 +37,31 @@ class MusicAlbumFilterPrice(generics.ListAPIView):
     serializer_class = Music_AlbumsSerializer
 
     def get_queryset(self):
-        print(str(self.request)[61])
-        return Music_Albums.objects.filter(musician_id=int(str(self.request)[-3])).order_by("price")
+        i = ""
+        c = 61
+        j = ""
+        while (j != "/"):
+            j = str(self.request)[c]
+            i += str(self.request)[c]
+            c += 1
+        id = i.replace("/", "")
+        return Music_Albums.objects.filter(musician_id=id).order_by("price")
+
 
 ######################## Generic type view  ##########################
 
-# class MusicianList(generics.ListCreateAPIView):
-#     queryset = Musicians.objects.all()
-#     serializer_class = MusiciansSerializer
-#
-#     # def list(self, request):
-#     #     # Note the use of `get_queryset()` instead of `self.queryset`
-#     #     queryset = self.get_queryset()
-#     #     serializer = MusiciansSerializer(queryset, many=True)
-#     #     if Musicians.objects.filter(name="Rakesh Shoo").exists():
-#     #         return Response(serializer.data)
-#     #     return Response("not a user")
-#
-#
-# class Music_AlbumsList(generics.ListCreateAPIView):
-#     queryset = Music_Albums.objects.all()
-#     serializer_class = Music_AlbumsSerializer
-#
-#
-# class MusiciansUpdateAPIView(generics.RetrieveUpdateAPIView):
-#     queryset = Musicians.objects.all()
-#     serializer_class = MusiciansUpdateSerialier
-#     lookup_field = 'id'
-#
-#     def get_object(self):
-#         id = self.kwargs["id"]
-#         return get_object_or_404(Musicians, id=id)
-#
-#     def post(self, request, *args, **kwargs):
-#         return self.update(request, *args, **kwargs)
-#
-#
-# class Music_AlbumsUpdateAPIView(generics.RetrieveUpdateAPIView):
-#     queryset = Music_Albums.objects.all()
-#     serializer_class = Music_AlbumsUpdateSerialier
-#     lookup_field = 'id'
-#
-#     def get_object(self):
-#         id = self.kwargs["id"]
-#         return get_object_or_404(Music_Albums, id=id)
-#
-#     def post(self, request, *args, **kwargs):
-#         return self.update(request, *args, **kwargs)
+class MusicAlbumFilter(generics.ListAPIView):
+    serializer_class = Music_AlbumsSerializer
+
+
+    def get_queryset(self):
+        i = ""
+        c = 55
+        j = ""
+        while (j != "/"):
+            j = str(self.request)[c]
+            i += str(self.request)[c]
+            c += 1
+        name = i.replace("%20", " ")
+        name = name.replace("/","")
+        return Music_Albums.objects.filter(album_name=name).order_by("musician__name")

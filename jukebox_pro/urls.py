@@ -10,8 +10,7 @@ router.register(r'musician', MusiciansViewSet, basename='musician')
 router.register(r'musician_album', Music_AlbumsViewSet, basename='musician_album')
 urlpatterns = router.urls
 
-################# OR ####################
-
+# OR
 # urlpatterns = [
 #     path('admin/', admin.site.urls),
 #     path('musicians/', views.MusicianList.as_view(), name='musicians'),

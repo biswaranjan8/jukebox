@@ -29,7 +29,7 @@ def validate_album_name(value):
 
 
 class Music_Albums(models.Model):
-    musician = models.ForeignKey(Musicians, on_delete=models.CASCADE)
+    musician = models.ManyToManyField(Musicians)
     album_name = models.CharField(max_length=100, validators=[validate_album_name])
     date_of_release = models.DateField(auto_now_add=True)
     genre = models.CharField(max_length=30, blank=True, null=True)

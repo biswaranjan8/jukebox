@@ -13,13 +13,6 @@ class Music_AlbumsSerializer(serializers.ModelSerializer):
         model = Music_Albums
         fields = "__all__"
 
-    # def validate_title(self, value):
-    #     """
-    #     Check that the blog post is about Django.
-    #     """
-    #     if 'django' not in value.lower():
-    #         raise serializers.ValidationError("Blog post is not about Django")
-    #     return value
 
 
 class MusiciansUpdateSerialier(serializers.ModelSerializer):
